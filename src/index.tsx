@@ -11,3 +11,5 @@ root.render(
     <App />
   </BrowserRouter>
 );
+
+document.body.classList.add("dark");
