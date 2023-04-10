@@ -14,7 +14,7 @@ import TaskCard from "views/admin/default/components/TaskCard";
 import tableDataCheck from "./variables/tableDataCheck";
 import tableDataComplex from "./variables/tableDataComplex";
 
-const Dashboard = () => {
+export const Dashboard = () => {
   return (
     <div>
       {/* Card widget */}
@@ -91,4 +91,3 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;

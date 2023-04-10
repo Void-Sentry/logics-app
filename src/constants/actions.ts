@@ -1,0 +1,9 @@
+export const [
+    LOGIN_REQUEST,
+    LOGIN_SUCCESS,
+    LOGIN_FAILURE,
+] = [
+    'LOGIN_REQUEST',
+    'LOGIN_SUCCESS',
+    'LOGIN_FAILURE'
+];
