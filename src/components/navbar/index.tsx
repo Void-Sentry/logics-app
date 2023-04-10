@@ -206,12 +206,13 @@ const Navbar = (props: {
                 >
                   Newsletter Settings
                 </a>
-                <a
-                  href=" "
-                  className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"
-                >
-                  Log Out
-                </a>
+                <Link to="/auth/sign-in">
+                  <button
+                    className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"
+                  >
+                    Log Out
+                  </button>
+                </Link>
               </div>
             </div>
           }

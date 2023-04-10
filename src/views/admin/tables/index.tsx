@@ -7,7 +7,7 @@ import DevelopmentTable from "./components/DevelopmentTable";
 import ColumnsTable from "./components/ColumnsTable";
 import ComplexTable from "./components/ComplexTable";
 
-const Tables = () => {
+export const Tables = () => {
   return (
     <div>
       <div className="mt-5 grid h-full grid-cols-1 gap-5 md:grid-cols-2">
@@ -24,4 +24,3 @@ const Tables = () => {
   );
 };
 
-export default Tables;

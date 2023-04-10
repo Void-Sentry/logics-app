@@ -1,39 +1,8 @@
 import InputField from "components/fields/InputField";
 import { FcGoogle } from "react-icons/fc";
 import Checkbox from "components/checkbox";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { fetchAuthClientRequest } from "store/actions";
-import { useEffect, useState } from "react";
-import { LoginState } from "store/reducers";
-// import { useNavigate } from "react-router-dom";
-// import { useCallback, useEffect, useState } from "react";
-// import { BASE_URL, Endpoint, HEADERS, Method, URL_ENCODED } from "constants/api";
 
-export const SignIn = () => {
-  const [username, setUsername] = useState('dev@dev.com');
-  const [password, setPassword] = useState('123');
-  const dispatch = useDispatch();
-  useSelector((state: LoginState) => { console.log(state.body) });
-
-  const handleLogin = () => { 
-    dispatch(fetchAuthClientRequest({ username, password }));
-  };
-  // const navigate = useNavigate();
-  // const auth = useCallback(() => {
-  //   navigate('/admin/dashboard');
-  // }, [navigate]);
-
-  // useEffect(() => {
-    // fetch(`${BASE_URL}${Endpoint.AUTH_CLIENT}`, {
-    //   method: Method.POST,
-    //   headers: HEADERS,
-    //   body: URL_ENCODED,
-    // })
-    //   .then(res => res.json())
-    //   .then(data => console.log(data))
-    //   .catch(() => console.log('deu errado'));
-  // });
+export const SignUp = () => {
   return (
     <div className="mt-16 mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-center">
       {/* Sign in section */}
@@ -91,7 +60,7 @@ export const SignIn = () => {
             Forgot Password?
           </a>
         </div>
-        <button onClick={handleLogin} className="linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200">
+        <button className="linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200">
           Sign In
         </button>
         <div className="mt-4">

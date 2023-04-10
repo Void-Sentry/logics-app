@@ -1,13 +1,13 @@
 import React from "react";
 
-// Admin Imports
-import MainDashboard from "views/admin/default";
-import NFTMarketplace from "views/admin/marketplace";
-import Profile from "views/admin/profile";
-import DataTables from "views/admin/tables";
-
-// Auth Imports
-import SignIn from "views/auth/SignIn";
+import { 
+  Dashboard,
+  Marketplace,
+  ProfileOverview,
+  Tables,
+  SignIn,
+  SignUp,
+} from './views/index';
 
 // Icon Imports
 import {
@@ -20,33 +20,40 @@ import {
 
 const routes = [
   {
-    name: "Main Dashboard",
+    name: "Dashboard",
     layout: "/admin",
-    path: "default",
+    path: "dashboard",
     icon: <MdHome className="h-6 w-6" />,
-    component: <MainDashboard />,
+    component: <Dashboard />,
   },
   {
-    name: "NFT Marketplace",
+    name: "Colaboradores",
     layout: "/admin",
-    path: "nft-marketplace",
+    path: "colaboradores",
     icon: <MdOutlineShoppingCart className="h-6 w-6" />,
-    component: <NFTMarketplace />,
+    component: <Marketplace />,
     secondary: true,
   },
   {
-    name: "Data Tables",
+    name: "Cargas",
     layout: "/admin",
     icon: <MdBarChart className="h-6 w-6" />,
-    path: "data-tables",
-    component: <DataTables />,
+    path: "cargas",
+    component: <Tables />,
   },
   {
-    name: "Profile",
+    name: "Rotas",
     layout: "/admin",
-    path: "profile",
+    path: "rotas",
     icon: <MdPerson className="h-6 w-6" />,
-    component: <Profile />,
+    component: <ProfileOverview />,
+  },
+  {
+    name: "Veículos",
+    layout: "/admin",
+    path: "veiculos",
+    icon: <MdPerson className="h-6 w-6" />,
+    component: <ProfileOverview />,
   },
   {
     name: "Sign In",
@@ -54,6 +61,13 @@ const routes = [
     path: "sign-in",
     icon: <MdLock className="h-6 w-6" />,
     component: <SignIn />,
+  },
+  {
+    name: "Sign Up",
+    layout: "/auth",
+    path: "sign-up",
+    icon: <MdLock className="h-6 w-6" />,
+    component: <SignUp />,
   },
 ];
 export default routes;
