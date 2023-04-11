@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { createEpicMiddleware } from 'redux-observable';
-import { loginReducer } from './reducers/index';
-import { loginEpic } from './epics';
+import { rootEpic } from './epics';
+import { rootReducer } from './reducers';
 
 const epicMiddleware = createEpicMiddleware();
 
 export const store = configureStore({
-    reducer: loginReducer,
+    reducer: rootReducer,
     middleware: [epicMiddleware],
 });
 
-epicMiddleware.run(loginEpic);
+epicMiddleware.run(rootEpic);
