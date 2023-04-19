@@ -7,9 +7,27 @@ export interface HttpOptions {
     body?: URLSearchParams;
 }
 
-export interface clientPayload {
+export interface RequestPayload {
     url: string;
     options: HttpOptions;
+}
+
+export interface ItemAuthResponse {
+    user: {
+        id: number;
+        name: string;
+        email: string;
+        email_verified_at: null;
+        tipo_usuario_id: number;
+        created_at: Date;
+        updated_at: Date;
+    }
+    token: string;
+}
+
+export interface AuthResponse {
+    message: string;
+    item: ItemAuthResponse;
 }
 
 export interface clientCredentials {

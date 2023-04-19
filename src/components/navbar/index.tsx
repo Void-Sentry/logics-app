@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Dropdown from "components/dropdown";
 import { FiAlignJustify } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import navbarimage from "assets/img/layout/Navbar.webp";
 import { BsArrowBarUp } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
@@ -11,6 +11,11 @@ import {
   IoMdInformationCircleOutline,
 } from "react-icons/io";
 import avatar from "assets/img/avatars/avatar4.png";
+import { useDispatch } from "react-redux";
+import { fetchLogoutRequest } from "store/actions";
+import { BASE_URL, Endpoint, Method } from "constants/api";
+import { useSelector } from "react-redux";
+import { rootState } from "types/store";
 
 const Navbar = (props: {
   onOpenSidenav: () => void;
@@ -18,7 +23,22 @@ const Navbar = (props: {
   secondary?: boolean | string;
 }) => {
   const { onOpenSidenav, brandText } = props;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { item: { token } } = useSelector((state: rootState) => state.user)
   const [darkmode, setDarkmode] = React.useState(document.body.classList.contains("dark"));
+  const handleLogout = useCallback(() => {
+    dispatch(fetchLogoutRequest({
+      url: `${BASE_URL}${Endpoint.AUTH_LOGOUT}`,
+      options: {
+        method: Method.POST,
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    }));
+    navigate('/auth/login');
+  }, []);
 
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
@@ -209,6 +229,7 @@ const Navbar = (props: {
                 <Link to="/auth/sign-in">
                   <button
                     className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"
+                    onClick={handleLogout}
                   >
                     Log Out
                   </button>

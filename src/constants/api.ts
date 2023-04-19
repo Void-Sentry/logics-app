@@ -10,7 +10,9 @@ export const URL_ENCODED: URLSearchParams = new URLSearchParams({
 });
 
 export enum Endpoint {
-    AUTH_CLIENT = 'auth/realms/master/protocol/openid-connect/token'
+    AUTH_CLIENT = 'auth/realms/master/protocol/openid-connect/token',
+    AUTH_LOGIN = 'auth/login',
+    AUTH_LOGOUT = 'auth/logout',
 }
 
 export enum Method {

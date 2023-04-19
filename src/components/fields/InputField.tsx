@@ -7,11 +7,12 @@ function InputField(props: {
   extra: string;
   placeholder: string;
   variant: string;
+  onChange?: Function;
   state?: string;
   disabled?: boolean;
   type?: string;
 }) {
-  const { label, id, extra, type, placeholder, variant, state, disabled } =
+  const { label, id, extra, type, onChange, placeholder, variant, state, disabled } =
     props;
 
   return (
@@ -28,6 +29,7 @@ function InputField(props: {
         disabled={disabled}
         type={type}
         id={id}
+        onChange={($event) => onChange($event.target.value)}
         placeholder={placeholder}
         className={`mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none ${
           disabled === true

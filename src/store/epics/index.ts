@@ -1,8 +1,9 @@
 import { combineEpics } from 'redux-observable';
 import { clientEpic } from './clientEpic';
-import { loginEpic } from './loginEpic';
+import { loginEpic, logoutEpic } from './loginEpic';
 
 export const rootEpic = combineEpics(
     clientEpic,
-    loginEpic
+    loginEpic,
+    logoutEpic,
 );
