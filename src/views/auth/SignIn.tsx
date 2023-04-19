@@ -1,28 +1,50 @@
 import InputField from "components/fields/InputField";
 import { FcGoogle } from "react-icons/fc";
 import Checkbox from "components/checkbox";
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchAuthClientRequest } from "store/actions";
+import { BASE_URL, Endpoint, HEADERS, Method } from "constants/api";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { rootState } from "types/store";
+import { AuthResponse, rootState } from "types/store";
 
 export const SignIn = () => {
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
-  // const dispatch = useDispatch();
-  const { client } = useSelector((state: rootState) => state);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [isPress, setPress] = useState(false);
+  const [password, setPassword] = useState('');
+  const handleLogin = useCallback(() => { 
+    setPress(!isPress);
+  }, [setPress]);
+  const { user } = useSelector((state: rootState) => state);
+  const fetchLogin = useCallback(() => {
+    if (isPress)
+      dispatch(fetchAuthClientRequest({
+        url: `${BASE_URL}${Endpoint.AUTH_LOGIN}`,
+        options: {
+          method: Method.POST,
+          headers: HEADERS,
+          body: new URLSearchParams({
+            email: email,
+            password: password
+          }),
+        }
+      }));
+    setPress(false);
+  }, [isPress, email, password]);
+  
+  useEffect(() => {
+    console.log(user)
+    if (user)
+      navigate('/admin/dashboard');
+  }, [user, navigate]);
 
   useEffect(() => {
-    console.log('a', client);
-  }, [client])
-
-  // const handleLogin = () => { 
-  //   dispatch(fetchAuthClientRequest({ username, password }));
-  // };
-  // const navigate = useNavigate();
-  // const auth = useCallback(() => {
-  //   navigate('/admin/dashboard');
-  // }, [navigate]);
+    if (isPress)
+      fetchLogin();
+  }, [isPress, email, password])
 
   return (
     <div className="mt-16 mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-center">
@@ -52,9 +74,10 @@ export const SignIn = () => {
           variant="auth"
           extra="mb-3"
           label="Email*"
+          onChange={setEmail}
           placeholder="mail@simmmple.com"
           id="email"
-          type="text"
+          type="email"
         />
 
         {/* Password */}
@@ -62,6 +85,7 @@ export const SignIn = () => {
           variant="auth"
           extra="mb-3"
           label="Password*"
+          onChange={setPassword}
           placeholder="Min. 8 characters"
           id="password"
           type="password"
@@ -81,7 +105,10 @@ export const SignIn = () => {
             Forgot Password?
           </a>
         </div>
-        <button className="linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200">
+        <button
+          className="linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200"
+          onClick={handleLogin}
+        >
           Sign In
         </button>
         <div className="mt-4">
