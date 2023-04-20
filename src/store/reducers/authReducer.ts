@@ -21,14 +21,13 @@ export const initialState: AuthResponse = {
 export const loginReducer = createReducer(initialState, (builder) => {
     builder
         .addCase(fetchAuthClientSuccess, (state, action) => {
-            state = action.payload;
-            // state.item.user.email = action.payload.item.user.email;
-            // state.item.user.email_verified_at = action.payload.item.user.email_verified_at;
-            // state.item.user.id = action.payload.item.user.id;
-            // state.item.user.name = action.payload.item.user.name;
-            // state.item.user.tipo_usuario_id = action.payload.item.user.tipo_usuario_id;
-            // state.item.user.updated_at = action.payload.item.user.updated_at;
-            // state.message = action.payload.message;
-            // state.item.token = action.payload.item.token;
+            state.item.user.email = action.payload.item.user.email;
+            state.item.user.email_verified_at = action.payload.item.user.email_verified_at;
+            state.item.user.id = action.payload.item.user.id;
+            state.item.user.name = action.payload.item.user.name;
+            state.item.user.tipo_usuario_id = action.payload.item.user.tipo_usuario_id;
+            state.item.user.updated_at = action.payload.item.user.updated_at;
+            state.message = action.payload.message;
+            state.item.token = action.payload.item.token;
         })
 });

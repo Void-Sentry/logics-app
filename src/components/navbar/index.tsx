@@ -1,7 +1,7 @@
-import React, { useCallback } from "react";
+import React from "react";
 import Dropdown from "components/dropdown";
 import { FiAlignJustify } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import navbarimage from "assets/img/layout/Navbar.webp";
 import { BsArrowBarUp } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
@@ -12,10 +12,12 @@ import {
 } from "react-icons/io";
 import avatar from "assets/img/avatars/avatar4.png";
 import { useDispatch } from "react-redux";
-import { fetchLogoutRequest } from "store/actions";
-import { BASE_URL, Endpoint, Method } from "constants/api";
+import { fetchAuthClientSuccess } from "store/actions";
+import { Endpoint, Method } from "constants/api";
 import { useSelector } from "react-redux";
 import { rootState } from "types/store";
+import { http } from "utils/http";
+import { initialState } from "store/reducers/authReducer";
 
 const Navbar = (props: {
   onOpenSidenav: () => void;
@@ -24,21 +26,12 @@ const Navbar = (props: {
 }) => {
   const { onOpenSidenav, brandText } = props;
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { item: { token } } = useSelector((state: rootState) => state.user)
   const [darkmode, setDarkmode] = React.useState(document.body.classList.contains("dark"));
-  const handleLogout = useCallback(() => {
-    dispatch(fetchLogoutRequest({
-      url: `${BASE_URL}${Endpoint.AUTH_LOGOUT}`,
-      options: {
-        method: Method.POST,
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
-    }));
-    navigate('/auth/login');
-  }, []);
+  const handleLogout = async () => {
+    await http(Endpoint.AUTH_LOGOUT, { method: Method.POST, headers: { Authorization: `Bearer ${token}` } });
+    dispatch(fetchAuthClientSuccess(initialState));
+  };
 
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
