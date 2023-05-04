@@ -1,6 +1,5 @@
 import React from "react";
 import CardMenu from "components/card/CardMenu";
-import Checkbox from "components/checkbox";
 import Card from "components/card";
 
 import {
@@ -19,7 +18,7 @@ type RowObj = {
   date: string;
 };
 
-function CheckTable(props: { tableData: any }) {
+function ColumnsTable(props: { tableData: any }) {
   const { tableData } = props;
   const [sorting, setSorting] = React.useState<SortingState>([]);
   let defaultData = tableData;
@@ -30,16 +29,9 @@ function CheckTable(props: { tableData: any }) {
         <p className="text-sm font-bold text-gray-600 dark:text-white">NAME</p>
       ),
       cell: (info: any) => (
-        <div className="flex items-center">
-          <Checkbox
-            defaultChecked={info.getValue()[1]}
-            // colorScheme="brandScheme"
-            me="10px"
-          />
-          <p className="ml-3 text-sm font-bold text-navy-700 dark:text-white">
-            {info.getValue()[0]}
-          </p>
-        </div>
+        <p className="text-sm font-bold text-navy-700 dark:text-white">
+          {info.getValue()}
+        </p>
       ),
     }),
     columnHelper.accessor("progress", {
@@ -93,12 +85,11 @@ function CheckTable(props: { tableData: any }) {
     debugTable: true,
   });
   return (
-    <Card extra={"w-full h-full sm:overflow-auto px-6"}>
-      <header className="relative flex items-center justify-between pt-4">
+    <Card extra={"w-full pb-10 p-4 h-full"}>
+      <header className="relative flex items-center justify-between">
         <div className="text-xl font-bold text-navy-700 dark:text-white">
-          Check Table
+          4-Columns Table
         </div>
-
         <CardMenu />
       </header>
 
@@ -161,5 +152,5 @@ function CheckTable(props: { tableData: any }) {
   );
 }
 
-export default CheckTable;
+export default ColumnsTable;
 const columnHelper = createColumnHelper<RowObj>();

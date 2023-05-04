@@ -25,6 +25,7 @@ const Navbar = (props: {
   const [darkmode, setDarkmode] = React.useState(document.body.classList.contains("dark"));
   const handleLogout = () => {
     dispatch(SIGNOUT_REQUEST({ url: Endpoint.AUTH_LOGOUT, options: { method: Method.POST } }));
+    sessionStorage.clear();
   };
 
   return (
