@@ -1,6 +1,6 @@
 import { Epic, ofType } from 'redux-observable';
 import { from, of } from 'rxjs';
-import { mergeMap, map, catchError, tap } from 'rxjs/operators';
+import { mergeMap, map, catchError } from 'rxjs/operators';
 import { SET_USER_STATE, SIGNIN_REQUEST, SIGNOUT_REQUEST, SIGNUP_REQUEST } from '../actions/authAction';
 import { http$ } from 'utils/http';
 import { RequestPayload } from 'store/types/api/http';
