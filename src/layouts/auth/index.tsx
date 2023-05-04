@@ -2,8 +2,13 @@ import Footer from "components/footer/FooterAuthDefault";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import routes from "routes";
 import FixedPlugin from "components/fixedPlugin/FixedPlugin";
+import { useSelector } from "react-redux";
+import { rootState } from "store/types/store/state/root";
+import { useEffect } from "react";
 
 export const Auth = () => {
+  const { token, user } = useSelector((state: rootState) => state.auth.item);
+  const navigate = useNavigate();
   const getRoutes = (routes: RoutesType[]): Array<JSX.Element> => (
     routes.map((prop, key) =>
       prop.layout === "/auth"
@@ -11,6 +16,10 @@ export const Auth = () => {
         : null
     )
   );
+
+  useEffect(() => {
+    if (token !== '' && user.tipo_usuario.descricao.includes('test') ) navigate('/admin/dashboard');
+  }, [token]);
 
   return (
     <div>

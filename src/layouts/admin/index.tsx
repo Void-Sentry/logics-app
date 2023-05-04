@@ -1,15 +1,23 @@
 import React from "react";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "components/navbar";
 import Sidebar from "components/sidebar";
 import Footer from "components/footer/Footer";
 import routes from "routes";
+import { rootState } from "store/types/store/state/root";
+import { useSelector } from "react-redux";
 
 export const Admin = (props: { [x: string]: any }) => {
   const { ...rest } = props;
   const location = useLocation();
+  const navigate = useNavigate();
+  const { auth: { item: { token, user } } } = useSelector((state: rootState) => state);
   const [open, setOpen] = React.useState(true);
   const [currentRoute, setCurrentRoute] = React.useState("Main Dashboard");
+
+  React.useEffect(() => {
+    if (token === '' ) navigate('/auth/sign-in');
+  }, [token]);
 
   React.useEffect(() => {
     window.addEventListener("resize", () =>

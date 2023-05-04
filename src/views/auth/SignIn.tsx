@@ -2,13 +2,12 @@ import InputField from "components/fields/InputField";
 import Checkbox from "components/checkbox";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { fetchAuthClientSuccess } from "store/actions";
 import { Endpoint, Method } from "constants/api";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { rootState } from "types/store";
-import { http } from "utils/http";
 import { Link } from "react-router-dom";
+import { rootState } from "store/types/store/state/root";
+import { SIGNIN_REQUEST } from "store/actions";
 
 export const SignIn = () => {
   const navigate = useNavigate();
@@ -16,24 +15,24 @@ export const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [res, setRes] = useState<any>({ error: '' });
-  const { user } = useSelector((state: rootState) => state);
+  const { auth } = useSelector((state: rootState) => state);
 
-  const fetchLogin = async () => {
-    setRes(await http(Endpoint.AUTH_LOGIN, {
-      method: Method.POST,
-      body: new URLSearchParams({
-        email,
-        password
-      })
+  const fetchLogin = () => {
+    dispatch(SIGNIN_REQUEST({
+      url: Endpoint.AUTH_LOGIN,
+      options: {
+        method: Method.POST,
+        body: new URLSearchParams({
+          email,
+          password
+        })
+      }
     }));
   };
   
   useEffect(() => {
-    if (res.error === undefined) {
-      dispatch(fetchAuthClientSuccess(res));
-      navigate('/admin/dashboard');
-    }
-  }, [res, navigate]);
+    if (auth.message !== '') navigate('/admin/dashboard');
+  }, [auth, navigate]);
 
   return (
     <div className="mt-16 mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-center">

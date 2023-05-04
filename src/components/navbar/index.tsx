@@ -12,12 +12,8 @@ import {
 } from "react-icons/io";
 import avatar from "assets/img/avatars/avatar4.png";
 import { useDispatch } from "react-redux";
-import { fetchAuthClientSuccess } from "store/actions";
+import { SIGNOUT_REQUEST } from "store/actions";
 import { Endpoint, Method } from "constants/api";
-import { useSelector } from "react-redux";
-import { rootState } from "types/store";
-import { http } from "utils/http";
-import { initialState } from "store/reducers/authReducer";
 
 const Navbar = (props: {
   onOpenSidenav: () => void;
@@ -26,11 +22,9 @@ const Navbar = (props: {
 }) => {
   const { onOpenSidenav, brandText } = props;
   const dispatch = useDispatch();
-  const { item: { token } } = useSelector((state: rootState) => state.user)
   const [darkmode, setDarkmode] = React.useState(document.body.classList.contains("dark"));
-  const handleLogout = async () => {
-    await http(Endpoint.AUTH_LOGOUT, { method: Method.POST, headers: { Authorization: `Bearer ${token}` } });
-    dispatch(fetchAuthClientSuccess(initialState));
+  const handleLogout = () => {
+    dispatch(SIGNOUT_REQUEST({ url: Endpoint.AUTH_LOGOUT, options: { method: Method.POST } }));
   };
 
   return (

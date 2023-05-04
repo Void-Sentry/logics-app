@@ -1,23 +1,20 @@
 import { createAction } from "@reduxjs/toolkit";
-import { TypeAction } from "constants/actions";
-import { AuthResponse, RequestPayload } from "types/store";
+import { RequestPayload } from "store/types/api/http";
+import { AuthActionState } from "store/types/store/action/auth";
+import { AuthState } from "store/types/store/state/auth";
 
 export const [
-    fetchAuthClientRequest,
-    fetchAuthClientSuccess,
-    fetchAuthClientFailure,
+    SIGNIN_REQUEST,
+    SIGNUP_REQUEST,
+    SIGNOUT_REQUEST,
 ] = [
-    createAction<RequestPayload>(TypeAction.LOGIN_REQUEST),
-    createAction<AuthResponse>(TypeAction.LOGIN_SUCCESS),
-    createAction<string>(TypeAction.REQUEST_FAILURE),
+    createAction<RequestPayload>(AuthActionState.SIGNIN_REQUEST),
+    createAction<RequestPayload>(AuthActionState.SIGNUP_REQUEST),
+    createAction<RequestPayload>(AuthActionState.SIGNOUT_REQUEST),
 ];
 
 export const [
-    fetchLogoutRequest,
-    fetchLogoutSuccess,
-    fetchLogoutFailure,
+    SET_USER_STATE,
 ] = [
-    createAction<RequestPayload>(TypeAction.LOGOUT_REQUEST),
-    createAction(TypeAction.LOGIN_SUCCESS),
-    createAction<string>(TypeAction.LOGOUT_FAILURE),
+    createAction<AuthState>(AuthActionState.SET_USER_STATE),
 ];

@@ -1,25 +1,29 @@
 import InputField from "components/fields/InputField";
-import Checkbox from "components/checkbox";
-import { http } from "utils/http";
-import { Endpoint, headers, Method } from "constants/api";
+// import Checkbox from "components/checkbox";
+import { Endpoint, Method } from "constants/api";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { SIGNUP_REQUEST } from "store/actions";
 
 export const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const handleRegister = async () => {
-    await http(Endpoint.AUTH_REGISTER, {
-      method: Method.POST,
-      headers,
-      body: new URLSearchParams({
-        name,
-        email,
-        password,
-        tipo_usuario_id: "1"
-      }),
-    });
+  const dispatch = useDispatch();
+  const handleRegister = () => {
+    dispatch(SIGNUP_REQUEST({
+      url: Endpoint.AUTH_REGISTER,
+      options: {
+        method: Method.POST,
+        body: new URLSearchParams({
+          name,
+          email,
+          password,
+          tipo_usuario_id: "1"
+        })
+      }
+    }));
   };
 
   return (

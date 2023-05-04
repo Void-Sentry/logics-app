@@ -1,25 +1,16 @@
 import { ajax } from 'rxjs/ajax'
 import { catchError, map, of } from "rxjs";
-import { HttpOptions } from 'types/store';
-import { BASE_URL, Endpoint } from 'constants/api';
 
-export const http = (
-    url: Endpoint,
-    options: HttpOptions,
-) => (
-    fetch(`${BASE_URL}${url}`, options)
-        .then(response => response.json())
-        .then(data => data)
-        .catch(e => console.log(e))
-);
+import { BASE_URL } from 'constants/api';
+import { HttpOptions } from 'store/types/api/http';
 
 export const http$ = (URL: string, options: HttpOptions) => (
     ajax(
         {
-            url: URL,
+            url: `${BASE_URL}${URL}`,
             method: options.method,
-            headers: options.headers,
-            body: options.body
+            headers: options.headers || { Authorization: `Bearer ${sessionStorage.getItem('token')}` },
+            body: options.body,
         }
     )
     .pipe(

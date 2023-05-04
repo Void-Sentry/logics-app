@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
-import { loginReducer } from './authReducer';
-import { clientReducer } from './clientReducer';
-import { rootState } from 'types/store';
+
+import { rootState } from 'store/types/store/state/root';
+import { loginReducer } from './auth/index';
 
 export const rootReducer = combineReducers<rootState>({
-    user: loginReducer,
-    client: clientReducer,
+    auth: loginReducer,
 });

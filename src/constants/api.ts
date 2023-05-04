@@ -2,8 +2,7 @@ import { store } from "store";
 
 export const [
     BASE_URL,
-    headers
-]: [string, Record<'Authorization', string>] = [process.env.REACT_APP_BASE_URL, { Authorization: `${store.getState().user.item.token}` }];
+]: [string] = [process.env.REACT_APP_BASE_URL];
 
 export const URL_ENCODED: URLSearchParams = new URLSearchParams({
     client_id: process.env.REACT_APP_CLIENT_ID,
