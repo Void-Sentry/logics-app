@@ -1,12 +1,9 @@
 import InputField from "components/fields/InputField";
 import Checkbox from "components/checkbox";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Endpoint, Method } from "constants/api";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { rootState } from "store/types/store/state/root";
 import { SIGNIN_REQUEST } from "store/actions";
 
 export const SignIn = () => {
