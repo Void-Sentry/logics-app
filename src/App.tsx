@@ -6,6 +6,7 @@ import {
 import {
   Admin,
   Auth,
+  Colab,
 } from 'layouts/index';
 
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
     <Routes>
       <Route path="auth/*" element={<Auth />} />
       <Route path="admin/*" element={<Admin />} />
+      <Route path="colab/*" element={<Colab />} />
       <Route path="/" element={<Navigate to="/auth/sign-in" replace />} />
     </Routes>
   );

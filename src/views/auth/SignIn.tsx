@@ -1,6 +1,6 @@
 import InputField from "components/fields/InputField";
 import Checkbox from "components/checkbox";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Endpoint, Method } from "constants/api";
 import { useNavigate } from "react-router-dom";
@@ -10,12 +10,9 @@ import { rootState } from "store/types/store/state/root";
 import { SIGNIN_REQUEST } from "store/actions";
 
 export const SignIn = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [res, setRes] = useState<any>({ error: '' });
-  const { auth } = useSelector((state: rootState) => state);
 
   const fetchLogin = () => {
     dispatch(SIGNIN_REQUEST({
@@ -29,10 +26,6 @@ export const SignIn = () => {
       }
     }));
   };
-  
-  useEffect(() => {
-    if (auth.message !== '') navigate('/admin/dashboard');
-  }, [auth, navigate]);
 
   return (
     <div className="mt-16 mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-center">

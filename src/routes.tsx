@@ -7,6 +7,7 @@ import {
   Tables,
   SignIn,
   SignUp,
+  Entregas,
 } from './views/index';
 
 // Icon Imports
@@ -54,6 +55,13 @@ const routes = [
     path: "veiculos",
     icon: <MdPerson className="h-6 w-6" />,
     component: <ProfileOverview />,
+  },
+  {
+    name: "Entregas",
+    layout: "/colab",
+    path: "entregas",
+    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    component: <Entregas />,
   },
   {
     name: "Sign In",

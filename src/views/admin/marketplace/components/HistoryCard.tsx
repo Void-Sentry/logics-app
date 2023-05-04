@@ -7,8 +7,9 @@ import Nft6 from "assets/img/nfts/Nft6.png";
 
 import { FaEthereum } from "react-icons/fa";
 import Card from "components/card";
+import { memo } from "react";
 
-const HistoryCard = () => {
+const HistoryCard = memo(() => {
   const HistoryData = [
     {
       image: Nft1,
@@ -69,7 +70,7 @@ const HistoryCard = () => {
       {/* History CardData */}
 
       {HistoryData.map((data, index) => (
-        <div className="flex h-full w-full items-start justify-between bg-white px-3 py-[20px] hover:shadow-2xl dark:!bg-navy-800 dark:shadow-none dark:hover:!bg-navy-700">
+        <div key={index} className="flex h-full w-full items-start justify-between bg-white px-3 py-[20px] hover:shadow-2xl dark:!bg-navy-800 dark:shadow-none dark:hover:!bg-navy-700">
           <div className="flex items-center gap-3">
             <div className="flex h-16 w-16 items-center justify-center">
               <img
@@ -107,6 +108,6 @@ const HistoryCard = () => {
       ))}
     </Card>
   );
-};
+});
 
 export default HistoryCard;

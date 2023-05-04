@@ -7,7 +7,7 @@ import routes from "routes";
 import { rootState } from "store/types/store/state/root";
 import { useSelector } from "react-redux";
 
-export const Admin = (props: { [x: string]: any }) => {
+export const Colab = (props: { [x: string]: any }) => {
   const { ...rest } = props;
   const location = useLocation();
   const navigate = useNavigate();
@@ -16,7 +16,11 @@ export const Admin = (props: { [x: string]: any }) => {
   const [currentRoute, setCurrentRoute] = React.useState("Main Dashboard");
 
   const getRoutes = (routes: RoutesType[]): Array<JSX.Element> => (
-    routes.map((prop, key) => prop.layout === "/admin" && <Route path={`/${prop.path}`} element={prop.component} key={key} />)
+    routes.map((prop, key) =>
+      prop.layout === "/colab" && (
+        <Route path={`/${prop.path}`} element={prop.component} key={key} />
+      )
+    )
   );
 
   const getActiveRoute = useCallback((routes: RoutesType[]): void => {
@@ -72,7 +76,7 @@ export const Admin = (props: { [x: string]: any }) => {
 
                 <Route
                   path="/"
-                  element={<Navigate to="/admin/default" replace />}
+                  element={<Navigate to="/colab/entregas" replace />}
                 />
               </Routes>
             </div>

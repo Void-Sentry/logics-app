@@ -9,7 +9,7 @@ export const http$ = (URL: string, options: HttpOptions) => (
         {
             url: `${BASE_URL}${URL}`,
             method: options.method,
-            headers: options.headers || { Authorization: `Bearer ${sessionStorage.getItem('token')}` },
+            headers: options.headers ?? { Authorization: `Bearer ${sessionStorage.getItem('token')}` },
             body: options.body,
         }
     )

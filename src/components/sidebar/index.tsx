@@ -1,14 +1,19 @@
-/* eslint-disable */
-
 import { HiX } from "react-icons/hi";
 import Links from "./components/Links";
 import routes from "routes";
+import { rootState } from "store/types/store/state/root";
+import { useSelector } from "react-redux";
+import { useMemo } from "react";
 
 const Sidebar = (props: {
   open: boolean;
   onClose: React.MouseEventHandler<HTMLSpanElement>;
 }) => {
   const { open, onClose } = props;
+  const { auth: { item: { user: { tipo_usuario } } } } = useSelector((state: rootState) => state);
+  const handleList = useMemo(() => routes.filter(item =>
+    item.layout.includes(tipo_usuario.descricao)), [tipo_usuario]);
+
   return (
     <div
       className={`sm:none duration-175 linear fixed !z-50 flex min-h-full flex-col bg-white pb-10 shadow-2xl shadow-white/5 transition-all dark:!bg-navy-800 dark:text-white md:!z-50 lg:!z-50 xl:!z-0 ${
@@ -31,7 +36,7 @@ const Sidebar = (props: {
       {/* Nav item */}
 
       <ul className="mb-auto pt-1">
-        <Links routes={routes} />
+        <Links routes={handleList} />
       </ul>
     </div>
   );

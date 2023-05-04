@@ -1,5 +1,3 @@
-import { store } from "store";
-
 export const [
     BASE_URL,
 ]: [string] = [process.env.REACT_APP_BASE_URL];

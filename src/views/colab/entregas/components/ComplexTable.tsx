@@ -1,7 +1,8 @@
 import React from "react";
 import CardMenu from "components/card/CardMenu";
-import Checkbox from "components/checkbox";
 import Card from "components/card";
+import Progress from "components/progress";
+import { MdCancel, MdCheckCircle, MdOutlineError } from "react-icons/md";
 
 import {
   createColumnHelper,
@@ -13,13 +14,16 @@ import {
 } from "@tanstack/react-table";
 
 type RowObj = {
-  name: [string, boolean];
-  progress: string;
-  quantity: number;
+  name: string;
+  status: string;
   date: string;
+  progress: number;
 };
 
-function CheckTable(props: { tableData: any }) {
+const columnHelper = createColumnHelper<RowObj>();
+
+// const columns = columnsDataCheck;
+export default function ComplexTable(props: { tableData: any }) {
   const { tableData } = props;
   const [sorting, setSorting] = React.useState<SortingState>([]);
   let defaultData = tableData;
@@ -29,43 +33,32 @@ function CheckTable(props: { tableData: any }) {
       header: () => (
         <p className="text-sm font-bold text-gray-600 dark:text-white">NAME</p>
       ),
-      cell: (info: any) => (
+      cell: (info) => (
+        <p className="text-sm font-bold text-navy-700 dark:text-white">
+          {info.getValue()}
+        </p>
+      ),
+    }),
+    columnHelper.accessor("status", {
+      id: "status",
+      header: () => (
+        <p className="text-sm font-bold text-gray-600 dark:text-white">
+          STATUS
+        </p>
+      ),
+      cell: (info) => (
         <div className="flex items-center">
-          <Checkbox
-            defaultChecked={info.getValue()[1]}
-            // colorScheme="brandScheme"
-            me="10px"
-          />
-          <p className="ml-3 text-sm font-bold text-navy-700 dark:text-white">
-            {info.getValue()[0]}
+          {info.getValue() === "Approved" ? (
+            <MdCheckCircle className="text-green-500 me-1 dark:text-green-300" />
+          ) : info.getValue() === "Disable" ? (
+            <MdCancel className="text-red-500 me-1 dark:text-red-300" />
+          ) : info.getValue() === "Error" ? (
+            <MdOutlineError className="text-amber-500 me-1 dark:text-amber-300" />
+          ) : null}
+          <p className="text-sm font-bold text-navy-700 dark:text-white">
+            {info.getValue()}
           </p>
         </div>
-      ),
-    }),
-    columnHelper.accessor("progress", {
-      id: "progress",
-      header: () => (
-        <p className="text-sm font-bold text-gray-600 dark:text-white">
-          PROGRESS
-        </p>
-      ),
-      cell: (info) => (
-        <p className="text-sm font-bold text-navy-700 dark:text-white">
-          {info.getValue()}
-        </p>
-      ),
-    }),
-    columnHelper.accessor("quantity", {
-      id: "quantity",
-      header: () => (
-        <p className="text-sm font-bold text-gray-600 dark:text-white">
-          QUANTITY
-        </p>
-      ),
-      cell: (info) => (
-        <p className="text-sm font-bold text-navy-700 dark:text-white">
-          {info.getValue()}
-        </p>
       ),
     }),
     columnHelper.accessor("date", {
@@ -77,6 +70,19 @@ function CheckTable(props: { tableData: any }) {
         <p className="text-sm font-bold text-navy-700 dark:text-white">
           {info.getValue()}
         </p>
+      ),
+    }),
+    columnHelper.accessor("progress", {
+      id: "progress",
+      header: () => (
+        <p className="text-sm font-bold text-gray-600 dark:text-white">
+          PROGRESS
+        </p>
+      ),
+      cell: (info) => (
+        <div className="flex items-center">
+          <Progress width="w-[108px]" value={info.getValue()} />
+        </div>
       ),
     }),
   ]; // eslint-disable-next-line
@@ -93,14 +99,13 @@ function CheckTable(props: { tableData: any }) {
     debugTable: true,
   });
   return (
-    <Card extra={"w-full h-full sm:overflow-auto px-6"}>
-      <header className="relative flex items-center justify-between pt-4">
+    <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
+      <div className="relative flex items-center justify-between pt-4">
         <div className="text-xl font-bold text-navy-700 dark:text-white">
-          Check Table
+          Complex Table
         </div>
-
         <CardMenu />
-      </header>
+      </div>
 
       <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">
         <table className="w-full">
@@ -160,6 +165,3 @@ function CheckTable(props: { tableData: any }) {
     </Card>
   );
 }
-
-export default CheckTable;
-const columnHelper = createColumnHelper<RowObj>();

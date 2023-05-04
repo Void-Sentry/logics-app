@@ -11,15 +11,14 @@ export const Auth = () => {
   const navigate = useNavigate();
   const getRoutes = (routes: RoutesType[]): Array<JSX.Element> => (
     routes.map((prop, key) =>
-      prop.layout === "/auth"
-        ? <Route path={`/${prop.path}`} element={prop.component} key={key} />
-        : null
+      prop.layout === "/auth" && <Route path={`/${prop.path}`} element={prop.component} key={key} />
     )
   );
 
   useEffect(() => {
-    if (token !== '' && user.tipo_usuario.descricao.includes('test') ) navigate('/admin/dashboard');
-  }, [token]);
+    if (user.tipo_usuario.descricao.includes('admin')) navigate('/admin/dashboard');
+    else if (user.tipo_usuario.descricao.includes('colab')) navigate('/colab/entregas');
+  }, [navigate, user, token]);
 
   return (
     <div>
