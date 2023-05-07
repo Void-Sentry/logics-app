@@ -1,12 +1,10 @@
-export interface RequestSignIn {
-    email: string;
-    password: string;
+import { Abstract } from "./generic/abstract";
+
+export interface RequestSignIn extends Abstract {
 }
 
-export interface RequestSingUp {
+export interface RequestSingUp extends Abstract {
     name: string;
-    email: string;
-    password: number;
     tipo_usuario_id: number;
 }
 
