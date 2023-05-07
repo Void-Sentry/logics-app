@@ -1,5 +1,6 @@
-export interface TipoUsuario {
-    descricao: string;
+import { Abstract } from "./generic/abstract";
+
+export interface TipoUsuario extends Abstract {
 }
 
 export interface User {

@@ -1,5 +1,6 @@
-export interface Role {
-    descricao: string;
+import { Abstract } from "./generic/abstract";
+
+export interface Role extends Abstract {
 }
 
 export interface RoleState {
