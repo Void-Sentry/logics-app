@@ -1,5 +1,5 @@
 import { Endpoint, Method } from 'constants/api';
-import { memo, useEffect } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { GET_COLABS_REQUEST } from 'store/actions';
@@ -8,6 +8,7 @@ import ComplexTable from "./components/ComplexTable";
 
 export const Colab = memo(() => {
   const { items } = useSelector((state: rootState) => state.colab);
+  const [isTableAtt, setTableAtt] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,7 +18,7 @@ export const Colab = memo(() => {
         method: Method.GET
       }
     }));
-  }, [dispatch]);
+  }, [dispatch, isTableAtt]);
 
-  return <ComplexTable tableData={items} />
+  return <ComplexTable endpoint={Endpoint.FETCH_COLAB} isAtt={isTableAtt} setAtt={setTableAtt} tableData={items} />
 });

@@ -16,7 +16,7 @@ export const Auth = () => {
   );
 
   useEffect(() => {
-    if (user.tipo_usuario.descricao.includes('admin')) navigate('/admin/dashboard');
+    if (user.tipo_usuario.descricao.includes('admin')) navigate('/admin/colaboradores');
     else if (user.tipo_usuario.descricao.includes('colab')) navigate('/colab/entregas');
   }, [navigate, user, token]);
 

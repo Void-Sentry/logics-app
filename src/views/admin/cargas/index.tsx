@@ -1,26 +1,24 @@
-// import tableDataDevelopment from "./variables/tableDataDevelopment";
-// import tableDataCheck from "./variables/tableDataCheck";
-// import CheckTable from "./components/CheckTable";
-import tableDataComplex from "../rotas/variables/tableDataComplex";
-// import tableDataComplex from "../rotas/variables/tableDataComplex";
-// import DevelopmentTable from "./components/DevelopmentTable";
-// import ColumnsTable from "./components/ColumnsTable";
+import { Endpoint, Method } from 'constants/api';
+import { memo, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { GET_CHARGES_REQUEST } from 'store/actions';
+import { rootState } from 'store/types/store/state/root';
 import ComplexTable from "./components/ComplexTable";
 
-export const Charges = () => {
-  return (
-    <div>
-      {/* <div className="mt-5 grid h-full grid-cols-1 gap-5 md:grid-cols-2">
-        <DevelopmentTable tableData={tableDataDevelopment} />
-        <CheckTable tableData={tableDataCheck} />
-      </div>
+export const Charges = memo(() => {
+  const { items } = useSelector((state: rootState) => state.charge);
+  const [isTableAtt, setTableAtt] = useState(false);
+  const dispatch = useDispatch();
 
-      <div className="mt-5 grid h-full grid-cols-1 gap-5 md:grid-cols-2"> */}
-        {/* <ColumnsTable tableData={tableDataColumns} /> */}
+  useEffect(() => {
+    dispatch(GET_CHARGES_REQUEST({
+      url: Endpoint.FETCH_CHARGE,
+      options: {
+        method: Method.GET
+      }
+    }));
+  }, [dispatch, isTableAtt]);
 
-        <ComplexTable tableData={tableDataComplex} />
-      {/* </div> */}
-    </div>
-  );
-};
-
+  return <ComplexTable endpoint={Endpoint.FETCH_CHARGE} isAtt={isTableAtt} setAtt={setTableAtt} tableData={items} />
+});

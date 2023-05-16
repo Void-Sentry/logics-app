@@ -3,6 +3,7 @@ import { ColabState } from './admin/colab';
 import { RouteState } from './admin/route';
 import { VehicleState } from './admin/vehicle';
 import { AuthState } from './auth'
+import { DeliveryState } from './colab/delivery';
 import { RoleState } from './role';
 
 export interface rootState {
@@ -12,4 +13,5 @@ export interface rootState {
     colab: ColabState;
     route: RouteState;
     vehicle: VehicleState;
+    delivery: DeliveryState;
 }

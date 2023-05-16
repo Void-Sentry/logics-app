@@ -1,26 +1,24 @@
-// import tableDataDevelopment from "./variables/tableDataDevelopment";
-// import tableDataCheck from "./variables/tableDataCheck";
-// import CheckTable from "./components/CheckTable";
-// import tableDataColumns from "./variables/tableDataColumns";
-import tableDataComplex from "../../admin/rotas/variables/tableDataComplex";
-// import DevelopmentTable from "./components/DevelopmentTable";
-// import ColumnsTable from "./components/ColumnsTable";
+import { Endpoint, Method } from 'constants/api';
+import { memo, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { GET_DELIVERIES_REQUEST } from 'store/actions';
+import { rootState } from 'store/types/store/state/root';
 import ComplexTable from "./components/ComplexTable";
 
-export const Entregas = () => {
-  return (
-    <div>
-      {/* <div className="mt-5 grid h-full grid-cols-1 gap-5 md:grid-cols-2">
-        <DevelopmentTable tableData={tableDataDevelopment} />
-        <CheckTable tableData={tableDataCheck} />
-      </div>
+export const Deliveries = memo(() => {
+  const { items } = useSelector((state: rootState) => state.delivery);
+  const [isTableAtt, setTableAtt] = useState(false);
+  const dispatch = useDispatch();
 
-      <div className="mt-5 grid h-full grid-cols-1 gap-5 md:grid-cols-2">
-        <ColumnsTable tableData={tableDataColumns} /> */}
+  useEffect(() => {
+    dispatch(GET_DELIVERIES_REQUEST({
+      url: Endpoint.FETCH_DELIVERY,
+      options: {
+        method: Method.GET
+      }
+    }));
+  }, [dispatch, isTableAtt]);
 
-        <ComplexTable tableData={tableDataComplex} />
-      {/* </div> */}
-    </div>
-  );
-};
-
+  return <ComplexTable endpoint={Endpoint.FETCH_DELIVERY} isAtt={isTableAtt} setAtt={setTableAtt} tableData={items} />
+});

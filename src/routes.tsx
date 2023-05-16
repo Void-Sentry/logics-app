@@ -1,22 +1,16 @@
-import React from "react";
-
 import { 
-  Dashboard,
-  // Marketplace,
-  // ProfileOverview,
-  // Tables,
   Colab,
   Charges,
   Routes,
   Vehicles,
   SignIn,
   SignUp,
-  Entregas,
-} from './views/index';
+} from './views';
+
+import { Deliveries } from './views/colab/entregas/index'
 
 // Icon Imports
 import {
-  MdHome,
   MdOutlineShoppingCart,
   MdBarChart,
   MdPerson,
@@ -24,13 +18,6 @@ import {
 } from "react-icons/md";
 
 const routes = [
-  {
-    name: "Dashboard",
-    layout: "/admin",
-    path: "dashboard",
-    icon: <MdHome className="h-6 w-6" />,
-    component: <Dashboard />,
-  },
   {
     name: "Colaboradores",
     layout: "/admin",
@@ -65,7 +52,7 @@ const routes = [
     layout: "/colab",
     path: "entregas",
     icon: <MdOutlineShoppingCart className="h-6 w-6" />,
-    component: <Entregas />,
+    component: <Deliveries />,
   },
   {
     name: "Sign In",

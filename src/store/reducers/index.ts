@@ -9,6 +9,7 @@ import {
     routeReducer,
     vehicleReducer
 } from './admin';
+import { deliveryReducer } from './colab/delivery';
 
 export const rootReducer = combineReducers<rootState>({
     auth: loginReducer,
@@ -17,4 +18,5 @@ export const rootReducer = combineReducers<rootState>({
     colab: colabReducer,
     route: routeReducer,
     vehicle: vehicleReducer,
+    delivery: deliveryReducer,
 });

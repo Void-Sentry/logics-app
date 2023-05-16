@@ -13,7 +13,7 @@ export const Admin = (props: { [x: string]: any }) => {
   const navigate = useNavigate();
   const { auth: { item: { token } } } = useSelector((state: rootState) => state);
   const [open, setOpen] = React.useState(true);
-  const [currentRoute, setCurrentRoute] = React.useState("Main Dashboard");
+  const [currentRoute, setCurrentRoute] = React.useState("Colaboradores");
 
   const getRoutes = (routes: RoutesType[]): Array<JSX.Element> => (
     routes.map((prop, key) => prop.layout === "/admin" && <Route path={`/${prop.path}`} element={prop.component} key={key} />)
@@ -72,7 +72,7 @@ export const Admin = (props: { [x: string]: any }) => {
 
                 <Route
                   path="/"
-                  element={<Navigate to="/admin/default" replace />}
+                  element={<Navigate to="/admin/colaboradores" replace />}
                 />
               </Routes>
             </div>

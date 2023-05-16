@@ -11,12 +11,12 @@ export enum Endpoint {
     AUTH_LOGIN = 'auth/login',
     AUTH_LOGOUT = 'auth/logout',
     AUTH_REGISTER = 'auth/register',
-    FETCH_ROUTE = 'entrega/entrega',
+    FETCH_ROUTE = 'rota/rota',
     FETCH_COLAB = 'usuario/usuario',
     FETCH_VEHICLE = 'veiculo/veiculo',
-    FETCH_DELIVERY = 'endereco/endereco',
+    FETCH_DELIVERY = 'entrega/entrega',
     FETCH_ROLE = 'tipo/tipo',
-    FETCH_CHARGE = 'charge/charge',
+    FETCH_CHARGE = 'carga/carga',
 }
 
 export enum Method {

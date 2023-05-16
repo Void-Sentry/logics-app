@@ -18,3 +18,10 @@ export const http$ = (URL: string, options: HttpOptions) => (
         catchError(err => of(err))
     )
 );
+
+export const http = (URL: string, options: HttpOptions) => (
+    fetch(`${BASE_URL}${URL}`, { method: options.method, headers: options.headers || { Authorization: `Bearer ${sessionStorage.getItem('token')}` }, body: options.body })
+        .then(response => response.json())
+        .then(body => body)
+        .catch(e => console.log(e))
+);

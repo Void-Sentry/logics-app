@@ -1,26 +1,24 @@
-// import tableDataDevelopment from "./variables/tableDataDevelopment";
-// import tableDataCheck from "./variables/tableDataCheck";
-// import CheckTable from "./components/CheckTable";
-// import tableDataColumns from "./variables/tableDataColumns";
-import tableDataComplex from "../rotas/variables/tableDataComplex";
-// import DevelopmentTable from "./components/DevelopmentTable";
-// import ColumnsTable from "./components/ColumnsTable";
+import { Endpoint, Method } from 'constants/api';
+import { memo, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { GET_VEHICLES_REQUEST } from 'store/actions';
+import { rootState } from 'store/types/store/state/root';
 import ComplexTable from "./components/ComplexTable";
 
-export const Vehicles = () => {
-  return (
-    <div>
-      {/* <div className="mt-5 grid h-full grid-cols-1 gap-5 md:grid-cols-2">
-        <DevelopmentTable tableData={tableDataDevelopment} />
-        <CheckTable tableData={tableDataCheck} />
-      </div> */}
+export const Vehicles = memo(() => {
+  const { items } = useSelector((state: rootState) => state.vehicle);
+  const [isTableAtt, setTableAtt] = useState(false);
+  const dispatch = useDispatch();
 
-      {/* <div className="mt-5 grid h-full grid-cols-1 gap-5 md:grid-cols-2">
-        <ColumnsTable tableData={tableDataColumns} /> */}
+  useEffect(() => {
+    dispatch(GET_VEHICLES_REQUEST({
+      url: Endpoint.FETCH_VEHICLE,
+      options: {
+        method: Method.GET
+      }
+    }));
+  }, [dispatch, isTableAtt]);
 
-        <ComplexTable tableData={tableDataComplex} />
-      {/* </div> */}
-    </div>
-  );
-};
-
+  return <ComplexTable endpoint={Endpoint.FETCH_VEHICLE} isAtt={isTableAtt} setAtt={setTableAtt} tableData={items} />
+});

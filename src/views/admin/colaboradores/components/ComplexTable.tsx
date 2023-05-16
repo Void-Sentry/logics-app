@@ -1,5 +1,4 @@
-import React from "react";
-import CardMenu from "components/card/CardMenu";
+import CardMenu from "./CardMenu";
 import Card from "components/card";
 
 import {
@@ -9,10 +8,15 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { Modal } from "components/modal";
 import { User } from "store/types/store/state/auth";
+import { Endpoint } from "constants/api";
+import { Dispatch, SetStateAction } from "react";
+import { Modal } from "views/admin/colaboradores/components/modal";
 
 interface ComplexTableProps {
+  isAtt: boolean;
+  setAtt: Dispatch<SetStateAction<boolean>>;
+  endpoint: Endpoint;
   tableData: Array<User>;
 }
 
@@ -71,7 +75,7 @@ export default function ComplexTable(props: ComplexTableProps) {
     columnHelper.accessor("actions", {
       id: "actions",
       header: null,
-      cell: (info) => <Modal row={info.row} />,
+      cell: (info) => <Modal endpoint={props.endpoint} row={info.row} isAtt={props.isAtt} setAtt={props.setAtt} />,
     }),
   ];
 
@@ -85,10 +89,8 @@ export default function ComplexTable(props: ComplexTableProps) {
   return (
     <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
       <div className="relative flex items-center justify-between pt-4">
-        <div className="text-xl font-bold text-navy-700 dark:text-white">
-          Complex Table
-        </div>
-        <CardMenu />
+        <div className="text-xl font-bold text-navy-700 dark:text-white" />
+        <CardMenu endpoint={props.endpoint} isAtt={props.isAtt} setAtt={props.setAtt} />
       </div>
 
       <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">
