@@ -62,6 +62,23 @@ const ActionForm = memo<ActionFormProps>(({ setForm, getForm, isUpdate }) => {
                                 />
                             </div>
                         </div>
+
+                        <div className="col-span-3">
+                            <label htmlFor="email" className="block text-sm font-semibold text-gray-400 dark:text-white leading-6">
+                                Identificação do responsável
+                            </label>
+                            <div className="mt-2">
+                                <input
+                                    id="capacidade"
+                                    name="capacidade"
+                                    type="text"
+                                    autoComplete="descricao"
+                                    className="block w-full rounded-full border-0 dark:bg-navy-900 dark:text-white py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    onChange={(event) => setForm({ ...getForm, usuario_id: event.target.value})}
+                                    value={getForm.usuario_id}
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

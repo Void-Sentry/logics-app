@@ -40,8 +40,8 @@ const ActionForm = memo<ActionFormProps>(({ setForm, getForm, isUpdate }) => {
                                     type="text"
                                     autoComplete="carga"
                                     className="block w-full rounded-full border-0 dark:bg-navy-900 dark:text-white py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    onChange={(event) => setForm({ ...getForm, bairro: event.target.value})}
-                                    value={getForm.bairro}
+                                    onChange={(event) => setForm({ ...getForm, carga_id: event.target.value})}
+                                    value={getForm.carga_id}
                                 />
                             </div>
                         </div>
@@ -57,8 +57,8 @@ const ActionForm = memo<ActionFormProps>(({ setForm, getForm, isUpdate }) => {
                                     type="text"
                                     autoComplete="descricao"
                                     className="block w-full rounded-full border-0 dark:bg-navy-900 dark:text-white py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    onChange={(event) => setForm({ ...getForm, descricao: event.target.value})}
-                                    value={getForm.descricao}
+                                    onChange={(event) => setForm({ ...getForm, veiculo_id: event.target.value})}
+                                    value={getForm.veiculo_id}
                                 />
                             </div>
                         </div>
