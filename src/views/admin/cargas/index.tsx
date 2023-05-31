@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { GET_CHARGES_REQUEST } from 'store/actions';
 import { rootState } from 'store/types/store/state/root';
-import ComplexTable from "./components/ComplexTable";
+import { ComplexTable } from 'components/table/ComplexTable';
 
 export const Charges = memo(() => {
   const { items } = useSelector((state: rootState) => state.charge);
@@ -20,5 +20,12 @@ export const Charges = memo(() => {
     }));
   }, [dispatch, isTableAtt]);
 
-  return <ComplexTable endpoint={Endpoint.FETCH_CHARGE} isAtt={isTableAtt} setAtt={setTableAtt} tableData={items} />
+  return (
+    <ComplexTable
+      endpoint={Endpoint.FETCH_CHARGE}
+      isAtt={isTableAtt}
+      setAtt={setTableAtt}
+      tableData={items}
+    />
+  );
 });

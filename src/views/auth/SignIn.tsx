@@ -1,10 +1,11 @@
 import InputField from "components/fields/InputField";
-import Checkbox from "components/checkbox";
+// import Checkbox from "components/checkbox";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Endpoint, Method } from "constants/api";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { SIGNIN_REQUEST } from "store/actions";
+import { Link } from "react-router-dom";
 
 export const SignIn = () => {
   const dispatch = useDispatch();
@@ -76,14 +77,14 @@ export const SignIn = () => {
         >
           Continue
         </button>
-        {/* <div className="mt-4">
+        <div className="mt-4">
           <span className=" text-sm font-medium text-navy-700 dark:text-gray-600">
-            Not registered yet?
+            Veja a situação dos seus
           </span>
           <Link to="/auth/sign-up" className="ml-1 text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white">
-            Create an account
+            pedidos
           </Link>
-        </div> */}
+        </div>
       </div>
     </div>
   );

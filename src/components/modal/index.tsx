@@ -9,7 +9,7 @@ interface ModalProps {
     endpoint: Endpoint;
     isAtt: boolean;
     setAtt: Dispatch<SetStateAction<boolean>>;
-    row?: Row<any>;
+    row?: Row<Record<string, any>>;
 }
 
 export const Modal = memo<ModalProps>(({ endpoint, row: { original }, setAtt, isAtt }) => {

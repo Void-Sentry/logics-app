@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { GET_DELIVERIES_REQUEST } from 'store/actions';
 import { rootState } from 'store/types/store/state/root';
-import ComplexTable from "./components/ComplexTable";
+import { ComplexTable } from 'components/table/ComplexTable';
 
 export const Deliveries = memo(() => {
   const { items } = useSelector((state: rootState) => state.delivery);
@@ -20,5 +20,12 @@ export const Deliveries = memo(() => {
     }));
   }, [dispatch, isTableAtt]);
 
-  return <ComplexTable endpoint={Endpoint.FETCH_DELIVERY} isAtt={isTableAtt} setAtt={setTableAtt} tableData={items} />
+  return (
+    <ComplexTable
+      endpoint={Endpoint.FETCH_DELIVERY}
+      isAtt={isTableAtt}
+      setAtt={setTableAtt}
+      tableData={items}
+    />
+  );
 });

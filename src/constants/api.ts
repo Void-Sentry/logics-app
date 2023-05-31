@@ -11,6 +11,7 @@ export enum Endpoint {
     AUTH_LOGIN = 'auth/login',
     AUTH_LOGOUT = 'auth/logout',
     AUTH_REGISTER = 'auth/register',
+    FETCH_ORDER = 'pedido/pedido',
     FETCH_ROUTE = 'rota/rota',
     FETCH_COLAB = 'usuario/usuario',
     FETCH_VEHICLE = 'veiculo/veiculo',

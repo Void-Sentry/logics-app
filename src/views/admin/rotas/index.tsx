@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { GET_ROUTES_REQUEST } from 'store/actions';
 import { rootState } from 'store/types/store/state/root';
-import ComplexTable from "./components/ComplexTable";
+import { ComplexTable } from 'components/table/ComplexTable';
 
 export const Routes = memo(() => {
   const { items } = useSelector((state: rootState) => state.route);
@@ -20,5 +20,12 @@ export const Routes = memo(() => {
     }));
   }, [dispatch, isTableAtt]);
 
-  return <ComplexTable endpoint={Endpoint.FETCH_ROUTE} isAtt={isTableAtt} setAtt={setTableAtt} tableData={items} />
+  return (
+    <ComplexTable
+      endpoint={Endpoint.FETCH_ROUTE}
+      isAtt={isTableAtt}
+      setAtt={setTableAtt}
+      tableData={items}
+    />
+  );
 });

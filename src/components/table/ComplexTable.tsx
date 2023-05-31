@@ -9,67 +9,42 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { Endpoint } from "constants/api";
-import { Dispatch, SetStateAction } from "react";
-import { Modal } from "views/admin/cargas/components/modal";
-import { Charge } from "store/types/store/state/admin/charge";
+import { Dispatch, SetStateAction, memo } from "react";
+import { Modal } from "components/modal";
 
 interface ComplexTableProps {
   isAtt: boolean;
   setAtt: Dispatch<SetStateAction<boolean>>;
   endpoint: Endpoint;
-  tableData: Array<Charge>;
+  tableData: Array<any>;
 }
 
 const columnHelper = createColumnHelper<any>();
 
-export default function ComplexTable(props: ComplexTableProps) {
-  const columns = [
-    columnHelper.accessor("descricao", {
-      id: "descricao",
+export const ComplexTable = memo<ComplexTableProps>(({ tableData, endpoint, isAtt, setAtt }) => {
+  const keys = Object.keys(tableData[0] || {});
+  const columns = keys.map((key: string) => (
+    columnHelper.accessor(key, {
+      id: key,
       header: () => (
-        <p className="text-sm font-bold text-gray-600 dark:text-white">Nome</p>
+        <p className="text-sm font-bold text-gray-600 dark:text-white">{key}</p>
       ),
       cell: (info) => (
         <p className="text-sm font-bold text-navy-700 dark:text-white">
-          {info.getValue()}
+          {info.getValue()?.descricao || info.getValue()}
         </p>
       ),
-    }),
-    columnHelper.accessor("created_at", {
-      id: "created_at",
-      header: () => (
-        <p className="text-sm font-bold text-gray-600 dark:text-white">
-          Data de registro
-        </p>
-      ),
-      cell: (info) => (
-        <div className="flex items-center">
-          {info.getValue()}
-        </div>
-      ),
-    }),
-    columnHelper.accessor("updated_at", {
-      id: "updated_at",
-      header: () => (
-        <p className="text-sm font-bold text-gray-600 dark:text-white">
-          Data de registro
-        </p>
-      ),
-      cell: (info) => (
-        <div className="flex items-center">
-          {info.getValue()}
-        </div>
-      ),
-    }),
-    columnHelper.accessor("actions", {
-      id: "actions",
-      header: null,
-      cell: (info) => <Modal endpoint={props.endpoint} row={info.row} isAtt={props.isAtt} setAtt={props.setAtt} />,
-    }),
-  ];
+    })
+  ));
+
+  columns.push(columnHelper.accessor("actions", {
+    id: "actions",
+    header: null,
+    cell: (info) => <Modal endpoint={endpoint} row={info.row} isAtt={isAtt} setAtt={setAtt} />,
+  }));
 
   const table = useReactTable({
-    data: props.tableData,
+    data: tableData,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -79,7 +54,7 @@ export default function ComplexTable(props: ComplexTableProps) {
     <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
       <div className="relative flex items-center justify-between pt-4">
         <div className="text-xl font-bold text-navy-700 dark:text-white" />
-        <CardMenu endpoint={props.endpoint} isAtt={props.isAtt} setAtt={props.setAtt} />
+        <CardMenu endpoint={endpoint} isAtt={isAtt} setAtt={setAtt} />
       </div>
 
       <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">
@@ -138,5 +113,5 @@ export default function ComplexTable(props: ComplexTableProps) {
         </table>
       </div>
     </Card>
-  );
-}
+  )
+});

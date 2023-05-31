@@ -1,6 +1,6 @@
 import { Dispatch, memo, SetStateAction, useState } from "react";
 import { BsPlus } from "react-icons/bs";
-import { ModalCreate } from "./modal/create";
+import { ModalCreate } from "../modal/create";
 import { Endpoint } from "constants/api";
 
 interface CardMenuProps {
