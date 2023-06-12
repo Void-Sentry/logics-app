@@ -1,7 +1,7 @@
 import { createAction } from "@reduxjs/toolkit";
 import { RequestPayload } from "store/types/api/http";
 import { ColabActionState } from "store/types/store/action/admin/colab";
-import { User } from "store/types/store/state/auth";
+import { Colab } from "store/types/store/state/admin/colab";
 
 export const [
     GET_COLABS_REQUEST,
@@ -11,8 +11,8 @@ export const [
     DELETE_COLABS_REQUEST,
 ] = [
     createAction<RequestPayload>(ColabActionState.GET_COLABS_REQUEST),
-    createAction<Array<User>>(ColabActionState.SET_COLABS_REQUEST),
-    createAction<User>(ColabActionState.CREATE_COLABS_REQUEST),
-    createAction<User>(ColabActionState.UPDATE_COLABS_REQUEST),
+    createAction<Array<Colab>>(ColabActionState.SET_COLABS_REQUEST),
+    createAction<Colab>(ColabActionState.CREATE_COLABS_REQUEST),
+    createAction<Colab>(ColabActionState.UPDATE_COLABS_REQUEST),
     createAction(ColabActionState.DELETE_COLABS_REQUEST),
 ];

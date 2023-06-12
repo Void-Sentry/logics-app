@@ -2,19 +2,19 @@ import { Endpoint, Method } from 'constants/api';
 import { memo, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { GET_ROUTES_REQUEST } from 'store/actions';
+import { GET_ADDRESS_REQUEST } from 'store/actions';
 import { rootState } from 'store/types/store/state/root';
 import { ComplexTable } from 'components/table/ComplexTable';
-import { initialState } from 'store/reducers/admin/route';
+import { initialState } from 'store/reducers/admin/address';
 
-export const Routes = memo(() => {
-  const { items } = useSelector((state: rootState) => state.route);
+export const Address = memo(() => {
+  const { items } = useSelector((state: rootState) => state.address);
   const [isTableAtt, setTableAtt] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(GET_ROUTES_REQUEST({
-      url: Endpoint.FETCH_ROUTE,
+    dispatch(GET_ADDRESS_REQUEST({
+      url: Endpoint.FETCH_ADDRESS,
       options: {
         method: Method.GET
       }
@@ -23,7 +23,7 @@ export const Routes = memo(() => {
 
   return (
     <ComplexTable
-      endpoint={Endpoint.FETCH_ROUTE}
+      endpoint={Endpoint.FETCH_ADDRESS}
       isAtt={isTableAtt}
       init={initialState.items[0]}
       setAtt={setTableAtt}

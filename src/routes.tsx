@@ -5,6 +5,7 @@ import {
   Vehicles,
   SignIn,
   SignUp,
+  Address,
 } from './views';
 
 import { Deliveries } from './views/colab/entregas/index'
@@ -32,6 +33,13 @@ const routes = [
     icon: <MdBarChart className="h-6 w-6" />,
     path: "cargas",
     component: <Charges />,
+  },
+  {
+    name: "Endereços",
+    layout: "/admin",
+    path: "enderecos",
+    icon: <MdPerson className="h-6 w-6" />,
+    component: <Address />,
   },
   {
     name: "Rotas",

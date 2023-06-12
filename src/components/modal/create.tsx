@@ -7,13 +7,14 @@ import { Method } from 'constants/api';
 interface ModalCreateProps {
     endpoint: string;
     isActive: boolean;
+    entries: Record<string, any>;
     onActive: Dispatch<SetStateAction<boolean>>;
     isAtt: boolean;
     setAtt: Dispatch<SetStateAction<boolean>>;
 }
 
-export const ModalCreate = memo<ModalCreateProps>(({ endpoint, isActive, onActive, isAtt, setAtt }) => {
-    const [getForm, setForm] = useState({});
+export const ModalCreate = memo<ModalCreateProps>(({ endpoint, entries, isActive, onActive, isAtt, setAtt }) => {
+    const [getForm, setForm] = useState(entries);
     const create = useCallback(async () => {
         await http(endpoint, { method: Method.POST, body: new URLSearchParams(Object.entries(getForm)) });
         onActive(!isActive)
@@ -42,7 +43,7 @@ export const ModalCreate = memo<ModalCreateProps>(({ endpoint, isActive, onActiv
                                                 Registro
                                             </Dialog.Title>
                                             <div className="mt-2">
-                                                <ActionForm setForm={setForm} getForm={getForm} isUpdate={false} />
+                                                <ActionForm setForm={setForm} getForm={getForm} />
                                             </div>
                                         </div>
                                     </div>

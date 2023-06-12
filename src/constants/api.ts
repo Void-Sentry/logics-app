@@ -18,6 +18,7 @@ export enum Endpoint {
     FETCH_DELIVERY = 'entrega/entrega',
     FETCH_ROLE = 'tipo/tipo',
     FETCH_CHARGE = 'carga/carga',
+    FETCH_ADDRESS = 'endereco/endereco'
 }
 
 export enum Method {

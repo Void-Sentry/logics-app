@@ -4,13 +4,14 @@ import { ModalCreate } from "../modal/create";
 import { Endpoint } from "constants/api";
 
 interface CardMenuProps {
+  entries: Record<string, any>;
   isAtt?: boolean;
   setAtt?: Dispatch<SetStateAction<boolean>>;
   endpoint?: Endpoint;
   transparent?: boolean;
 }
 
-const CardMenu = memo<CardMenuProps>(({ endpoint, transparent, isAtt, setAtt }) => {
+const CardMenu = memo<CardMenuProps>(({ endpoint, entries, transparent, isAtt, setAtt }) => {
   const [isOpen, setOpen] = useState(false);
   return (
     <>
@@ -20,7 +21,7 @@ const CardMenu = memo<CardMenuProps>(({ endpoint, transparent, isAtt, setAtt }) 
       >
         <BsPlus className="h-6 w-6" />
       </button>
-      {isOpen && <ModalCreate endpoint={endpoint} isActive={isOpen} onActive={setOpen} isAtt={isAtt} setAtt={setAtt} />}
+      {isOpen && <ModalCreate endpoint={endpoint} entries={entries} isActive={isOpen} onActive={setOpen} isAtt={isAtt} setAtt={setAtt} />}
     </>
   );
 });

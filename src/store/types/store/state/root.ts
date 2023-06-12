@@ -1,3 +1,4 @@
+import { AddressState } from './admin/address';
 import { ChargeState } from './admin/charge';
 import { ColabState } from './admin/colab';
 import { RouteState } from './admin/route';
@@ -14,4 +15,5 @@ export interface rootState {
     route: RouteState;
     vehicle: VehicleState;
     delivery: DeliveryState;
+    address: AddressState;
 }

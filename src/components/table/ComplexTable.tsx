@@ -17,12 +17,13 @@ interface ComplexTableProps {
   setAtt: Dispatch<SetStateAction<boolean>>;
   endpoint: Endpoint;
   tableData: Array<any>;
+  init?: Record<string, any>;
 }
 
 const columnHelper = createColumnHelper<any>();
 
-export const ComplexTable = memo<ComplexTableProps>(({ tableData, endpoint, isAtt, setAtt }) => {
-  const keys = Object.keys(tableData[0] || {});
+export const ComplexTable = memo<ComplexTableProps>(({ tableData, init, endpoint, isAtt, setAtt }) => {
+  const keys = Object.keys(tableData[0] || init);
   const columns = keys.map((key: string) => (
     columnHelper.accessor(key, {
       id: key,
@@ -54,7 +55,7 @@ export const ComplexTable = memo<ComplexTableProps>(({ tableData, endpoint, isAt
     <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
       <div className="relative flex items-center justify-between pt-4">
         <div className="text-xl font-bold text-navy-700 dark:text-white" />
-        <CardMenu endpoint={endpoint} isAtt={isAtt} setAtt={setAtt} />
+        <CardMenu endpoint={endpoint} entries={init} isAtt={isAtt} setAtt={setAtt} />
       </div>
 
       <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">

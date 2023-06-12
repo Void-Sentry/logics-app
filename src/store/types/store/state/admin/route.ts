@@ -1,10 +1,9 @@
 export interface Route {
     id: number;
     descricao: string;
-    carga_id: number;
     veiculo_id: number;
-    created_at: Date;
-    updated_at: Date;
+    created_at: Date | null;
+    updated_at: Date | null;
 }
 
 export interface RouteState {

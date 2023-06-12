@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { GET_VEHICLES_REQUEST } from 'store/actions';
 import { rootState } from 'store/types/store/state/root';
 import { ComplexTable } from 'components/table/ComplexTable';
+import { initialState } from 'store/reducers/admin/vehicle';
 
 export const Vehicles = memo(() => {
   const { items } = useSelector((state: rootState) => state.vehicle);
@@ -24,6 +25,7 @@ export const Vehicles = memo(() => {
     <ComplexTable
       endpoint={Endpoint.FETCH_VEHICLE}
       isAtt={isTableAtt}
+      init={initialState.items[0]}
       setAtt={setTableAtt}
       tableData={items}
     />

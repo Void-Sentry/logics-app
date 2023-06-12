@@ -53,7 +53,7 @@ export const Modal = memo<ModalProps>(({ endpoint, row: { original }, setAtt, is
                                                     Informações
                                                 </Dialog.Title>
                                                 <div className="mt-2">
-                                                    <ActionForm getForm={getForm} setForm={setForm} isUpdate={true} />
+                                                    <ActionForm getForm={getForm} setForm={setForm} />
                                                 </div>
                                             </div>
                                         </div>
