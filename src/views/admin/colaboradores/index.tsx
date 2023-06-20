@@ -1,4 +1,4 @@
-import { ComplexTable } from 'components/table/ComplexTable';
+import { ComplexTable } from './table';
 import { Endpoint, Method } from 'constants/api';
 import { memo, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';

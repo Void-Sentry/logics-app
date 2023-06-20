@@ -1,7 +1,7 @@
 import { Fragment, useRef, useState, memo, useCallback, Dispatch, SetStateAction } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Row } from '@tanstack/react-table';
-import ActionForm from '../form/form';
+import ActionForm from '../form';
 import { http } from 'utils/http';
 import { Endpoint, Method } from 'constants/api';
 
@@ -45,14 +45,14 @@ export const Modal = memo<ModalProps>(({ endpoint, row: { original }, setAtt, is
                                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                             >
-                                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                                    <div className="bg-white dark:bg-navy-800 px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                                        <div className="sm:flex sm:items-start">
-                                            <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg w-full">
+                                    <div className="bg-white dark:bg-navy-800 px-4 pb-4 pt-5 sm:p-6 sm:pb-4 w-full">
+                                        <div className="sm:flex sm:items-start w-full">
+                                            <div className="mt-3 text-center sm:mt-0 sm:text-left w-full">
                                                 <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-400 dark:text-white">
                                                     Informações
                                                 </Dialog.Title>
-                                                <div className="mt-2">
+                                                <div className="mt-2 w-full">
                                                     <ActionForm getForm={getForm} setForm={setForm} />
                                                 </div>
                                             </div>
